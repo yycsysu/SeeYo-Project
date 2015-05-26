@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @username || "SeeYo" %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-inner">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">SeeYo</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><%= link_to 'Log in', :controller => 'users', :action => 'sign_in' %></li>
+                <li><%= link_to 'Sign up', :controller => 'users', :action => 'sign_up' %></li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="container" class="container">
+<p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+       <%= yield %>
+        <hr />
+        <footer>
+            <p><a href="#" target="_blank">z3y</a> 2015</p>
+        </footer>
+    </div>
+</body>
+</html>

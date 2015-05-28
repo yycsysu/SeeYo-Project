@@ -1,34 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @username || "SeeYo" %></title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <% if user_signed_in? %>
+    <title><%= current_user.email%></title>
+  <% else %>
+    <title><% "SeeYo" %></title>
+  <% end %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="navbar-inner">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">SeeYo</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><%= link_to 'Log in', :controller => 'users', :action => 'sign_in' %></li>
-                <li><%= link_to 'Sign up', :controller => 'users', :action => 'sign_up' %></li>
-            </ul>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="navbar-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">See Yoo</a>
+        </div>
+        <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <%= render :partial => "common/usernav" %>
+          </ul>
         </div>
       </div>
     </nav>
-    <div id="container" class="container">
-<p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-
-       <%= yield %>
-        <hr />
-        <footer>
-            <p><a href="#" target="_blank">z3y</a> 2015</p>
-        </footer>
+    <div class="container" id="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+        <%= yield %>
     </div>
+  <hr />
+  <footer>
+    <p class="text-center"><a href="#" target="_blank">z3y</a> 2015</p>
+  </footer>
 </body>
 </html>

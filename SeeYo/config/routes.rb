@@ -1,12 +1,30 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  #match ':controller(/:action(/:id(.:format)))', :via => :all
-  get '/square' => 'staticpages#square', :as => "square" 
-  get '/profile/:email' => 'staticpages#profile', :as => "profile" 
+  get '/plaza' => 'staticpages#plaza', :as => "plaza" 
+  get '/profile/:id' => 'staticpages#profile', :as => "profile" 
 
   root :to => "staticpages#welcome"
 
+  
+  resources :users, :except => [:new, :create, :destroy] do
+    resources :friends, :except => [:show, :new, :edit, :update] do
+      collection do
+        get :show_focus
+        get :show_fans
+      end
+    end
+  end
+  resources :yochats do
+    resources :comments, :except => [:index, :show]
+  end
+  namespace :admin do
+    resources :users
+    resources :yochats
+    resources :comments
+  end
+  match ':controller(/:action(/:id(.:format)))', :via => :all
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -6,19 +6,13 @@
     <div class="col-lg-8">
       <div class="row-fluid">
         <div class="col-md-12 bg-white" >
-          <form>
-            <fieldset>
-              <legend>Creat YoChat</legend>
-              <textarea class="form-control" rows="3" placeholder="Say something..." style="resize:none"></textarea>
-              <br />
-              <p class="text-right">
-                <button class="btn btn-primary" type="submit">发表</button>
-              </p>
-            </fieldset>
-          </form>
+          <fieldset>
+            <legend>Creat YoChat</legend>
+            <%= render :partial => "common/yochat_publish" %>
+          </fieldset>
         </div>
       </div>
-      <%= render :partial => "staticpages/showYoChats" %>
+      <%= render :partial => "common/yochat_show" %>
     </div>
   </div>
 </div>

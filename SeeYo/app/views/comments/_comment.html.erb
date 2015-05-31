@@ -1,0 +1,11 @@
+<div class="row-fluid bg-white">
+  <div class="col-md-2">
+    <%= image_tag("head.jpg") %>
+  </div>
+  <div class="col-md-10">
+    <%= link_to comment.user.username, '#' %>
+    <p><%= comment.content %></p>
+    <p class="text-muted"><%= comment.updated_at %></p>
+    <hr />
+  </div>
+</div>

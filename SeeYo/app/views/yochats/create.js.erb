@@ -1,0 +1,4 @@
+$("#publish_text_area")[0].value = "";
+$("#yochats_div").prepend("<%= escape_javascript(render @yochat) %>");
+var cnt = parseInt($("#yochat_count").html()) + 1;
+$("#yochat_count").html(cnt.toString());

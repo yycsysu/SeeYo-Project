@@ -3,30 +3,21 @@
     <div class="col-lg-3">
     </div>
     <div class="col-lg-6">
-    <div class="row-fluid">
-      <div class="col-lg-12">
-        <%= render :partial => "staticpages/profile" %>
+      <div class="row-fluid">
+        <div class="col-lg-12">
+          <%= render :partial => "staticpages/profile" %>
+        </div>
       </div>
-    </div>
-      <legend>Profile</legend>
-      <table class="table table-striped">
-      	<tr>
-          <td class="text-right text-muted" width="100">E-mail</td>
-      	  <td>text@qq.com</td>
-      	</tr>
-      	<tr>
-          <td class="text-right text-muted" width="100">Name</td>
-      	  <td>yuyc</td>
-      	</tr>
-      	<tr>
-          <td class="text-right text-muted" width="100">Student No.</td>
-      	  <td>12000000</td>
-      	</tr>
-      	<tr>
-          <td class="text-right text-muted" width="100">Gender</td>
-      	  <td>f</td>
-      	</tr>
-      </table>
+      <div class="row-fluid">
+        <div class="col-lg-12" id="profile_div">
+        <%= render :partial => "staticpages/profileShow" %>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="col-md-2 col-md-offset-5">
+        <%= button_to 'Edit', "/profiles/edit", remote: true, :class => "btn btn-default", :id => "profileEditButton", "data-complete-text" => "Save"%>
+        </div>
+      </div>
     </div>
     <div class="col-lg-3">
     </div>

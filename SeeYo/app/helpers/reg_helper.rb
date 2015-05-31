@@ -1,2 +1,0 @@
-module RegHelper
-end

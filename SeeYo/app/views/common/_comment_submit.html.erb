@@ -1,0 +1,14 @@
+<div class="row-fluid">
+	<div class="col-md-2">
+		<%= image_tag("head.jpg") %>
+	</div>
+	<div class="col-md-8">
+      <%= form_for @comment, remote: true, :url => yochat_comments_path(@yochat) do |f| %>
+        <%= f.text_area :content, :rows => 1, :placeholder => "Comment...", :style => "resize:none", :class => "form-control", :id => "comment_submit_area" %>
+        <%= f.submit 'Publish', :class => "btn btn-default btn-lg" %>
+      <% end %>
+	</div>
+	<div class="col-md-2">
+	</div>
+	<br /><br /><hr />
+</div>

@@ -1,13 +1,13 @@
 <legend>Profile</legend>
-<%= form_for @info, :url => user_path(@user), :method => 'patch' do |f| %>
+<%= form_for @info, :url => user_path(@user), :remote  => true, :method => 'patch' do |f| %>
 <table class="mytable table-hover" id="profile_table">
-  <tr id="nickname">
+  <tr id="username">
     <td class="text-right text-muted" width="100">Nickname</td>
-    <td><%= f.text_field :nickname, :value => @user.username, :class => "form-control input-sm" %></td>
+    <td><%= f.text_field :username, :value => @user.information.username, :class => "form-control input-sm" %></td>
   </tr>
   <tr id="email">
     <td class="text-right text-muted" width="100">E-mail</td>
-    <td><%= f.text_field :email, :value => @user.email, :class => "form-control input-sm" %></td>
+    <td><%= @user.email %></td>
   </tr>
   <tr id="location">
     <td class="text-right text-muted" width="100">Location</td>
@@ -44,7 +44,7 @@
 <% if current_user.id == @user.id %>
   <div class="row-fluid">
     <div class="col-md-2 col-md-offset-5">
-  <%= f.submit 'Save', remote: true, :class => "btn btn-default" %>
+      <%= f.submit 'Save', remote: true, :class => "btn btn-default" %>
     </div>
   </div>
 <% end %>

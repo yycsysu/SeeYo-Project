@@ -1,0 +1,4 @@
+$('#user_show_div').html("<%= escape_javascript(render :partial => 'common/profile_show') %>");
+$("#username_h").html("<%= @info.username %>");
+$("#location_td").html("<%= @info.location %>");
+$("#gender_td").html("<%= @info.gender %>");

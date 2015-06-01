@@ -1,7 +1,7 @@
 <div class="row-fluid">
   <div class="col-md-12" >
     <%= image_tag("a.jpg", class:"img-rounded center-block") %>
-    <h2 class="text-center"><%= @user.username %></h2>
+    <h2 class="text-center" id="username_h"><%= @user.information.username %></h2>
     <% if Friend.exists?(:userf_id => current_user.id ,:usert_id => @user.id) %>
       <%= button_to 'Unfollow', user_friends_path(@user), :method => 'post', :class => "btn btn-default btn-sm btn-block" %>
     <% elsif @user.id != current_user.id%>
@@ -13,19 +13,19 @@
         <td class="text-right text-muted td-xs" width="20">
           <%= content_tag('i', nil, class: "fa fa-envelope-o fa-fw") %>
         </td>
-        <td class="td-xs"><%= @user.email %></td>
+        <td class="td-xs" id="email_td"><%= @user.email %></td>
       </tr>
       <tr>
         <td class="text-right text-muted td-xs" width="20">
           <%= content_tag('i', nil, class: "fa fa-location-arrow fa-fw") %>
         </td>
-        <td class="td-xs"><%= @user.information.location %></td>
+        <td class="td-xs" id="location_td"><%= @user.information.location %></td>
       </tr>
       <tr>
         <td class="text-right text-muted td-xs" width="20">
           <%= content_tag('i', nil, class: "fa fa-male fa-fw") %>
         </td>
-        <td class="td-xs"><%= @user.information.gender %></td>
+        <td class="td-xs" id="gender_td"><%= @user.information.gender %></td>
       </tr>
       <tr>
         <td class="text-right text-muted td-xs" width="20">

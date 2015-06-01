@@ -5,10 +5,10 @@
         <%= image_tag("head.jpg") %>
       </div>
       <div class="col-md-10">
-        <%= link_to comment.user.username, '#' %>
+        <%= link_to comment.user.information.username, '#' %>
         <p><%= comment.content %></p>
         <p class="text-muted"><%= comment.updated_at %></p>
-        <% if comment.user.username == @user.username%>
+        <% if comment.user.id == @user.id %>
           <%= button_to 'Delete', yochat_comment_path(comment.yochat, comment), :method => :delete, remote: true, :class => "btn btn-default btn-xs btn-block" %>
         <% end %>
         <hr />

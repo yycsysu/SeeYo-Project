@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_current_user, :only => [:index]
-  before_action :set_user, :except => [:index]
+  before_action :set_current_user, :only => [:index, :update, :edit]
+  before_action :set_user, :except => [:index, :update, :edit]
   before_action :find_focus, :find_fans, :only => [:show, :index]
 
   def index
@@ -32,12 +32,12 @@ class UsersController < ApplicationController
       @block_title = "My YoChats"
       @render_name = "yochat_show"
     else
-      @block_title = @user.username + "'s YoChats"
+      @block_title = @user.information.username + "'s YoChats"
       @render_name = "yochat_show"
     end
     if @user
       @yochats = @user.yochats.reverse
-      @page_title = @user.username + "'s profile"
+      @page_title = @user.information.username + "'s Home"
     end
   end
 
@@ -45,6 +45,18 @@ class UsersController < ApplicationController
     @info = @user.information
     respond_to do |format|
       format.js
+    end
+  end
+
+  def update
+    @info = @user.information
+    respond_to do |format|
+      if @info.update(info_params)
+        format.js
+        format.html { redirect_to root_path, notice: 'Information was successfully updated!' }
+      else
+        format.html { render "edit", alert: 'Information updated failed!' }
+      end
     end
   end
 
@@ -77,6 +89,10 @@ class UsersController < ApplicationController
     if @user
       @fans = Friend.where(['usert_id=?', @user.id]).pluck(:userf_id)
     end
+  end
+
+  def info_params
+    params.require(:information).permit(:username, :gender, :location, :about, :birthday, :blog, :interest_ids => [])
   end
 
   def yochat_params

@@ -3,7 +3,7 @@
     <%= image_tag("head.jpg") %>
   </div>
   <div class="col-md-6">
-    <%= link_to user.username, user_path(user) %>
+    <%= link_to user.information.username, user_path(user) %>
     <p><%= user.information.about %></p>
   </div>
   <div class="col-md-4">

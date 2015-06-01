@@ -5,14 +5,14 @@
         <%= image_tag("head.jpg") %>
       </div>
       <div class="col-md-10">
-        <%= link_to yochat.user.username, user_path(yochat.user) %>
+        <%= link_to yochat.user.information.username, user_path(yochat.user) %>
         <p><%= yochat.content %></p>
         <p class="text-muted"><%= yochat.updated_at %></p>
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
           <div class="btn-group" role="group">
             <%= button_to 'Comment (' + yochat.comments.count.to_s + ')' , yochat_path(yochat), :method => :get, remote: true, :class => "btn btn-default btn-xs", :id => "comment_button" + yochat.id.to_s %>
           </div>
-          <% if yochat.user.username == current_user.username%>
+          <% if yochat.user.id == current_user.id %>
           <div class="btn-group" role="group">
             <%= button_to 'Delete', yochat_path(yochat), :method => :delete, remote: true, :class => "btn btn-default btn-xs" %>
           </div>

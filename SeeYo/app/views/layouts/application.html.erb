@@ -26,8 +26,10 @@
       </div>
     </nav>
     <div class="container" id="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+        <br /><br /><br /><br />
+<p style='background-color:#CFC; text-align:center; border-radius:7px'><%= flash[:notice] %></p>
+<p style='background-color:#FCC; text-align:center; border-radius:7px'><%= flash[:alert] %></p>
+
         <%= yield %>
     </div>
   <hr />

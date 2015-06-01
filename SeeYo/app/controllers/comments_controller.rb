@@ -18,6 +18,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment_id = @comment.id
+    @yochat = @comment.yochat
+    @comment.destroy
+    respond_to do |format|
+      format.js
+      format.html { redirect_to root_path, notice: 'Comment was successfully deleted!' }
+    end
+  end
+
   private
   def set_user_yochat
     @user = current_user

@@ -1,11 +1,18 @@
-<div class="row-fluid bg-white">
-  <div class="col-md-2">
-    <%= image_tag("head.jpg") %>
-  </div>
-  <div class="col-md-10">
-    <%= link_to comment.user.username, '#' %>
-    <p><%= comment.content %></p>
-    <p class="text-muted"><%= comment.updated_at %></p>
-    <hr />
+<div class="row" id="comment_div<%= comment.id %>">
+  <div class="col-md-12">
+    <div class="row-fluid">
+      <div class="col-md-2">
+        <%= image_tag("head.jpg") %>
+      </div>
+      <div class="col-md-10">
+        <%= link_to comment.user.username, '#' %>
+        <p><%= comment.content %></p>
+        <p class="text-muted"><%= comment.updated_at %></p>
+        <% if comment.user.username == @user.username%>
+          <%= button_to 'Delete', yochat_comment_path(comment.yochat, comment), :method => :delete, remote: true, :class => "btn btn-default btn-xs btn-block" %>
+        <% end %>
+        <hr />
+      </div>
+    </div>
   </div>
 </div>

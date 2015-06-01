@@ -1,2 +1,3 @@
 $("#comment_submit_area")[0].value = "";
 $("#comment_show_div<%= @comment.yochat.id %>").prepend("<%= escape_javascript(render @comment) %>");
+$("#comment_button<%= @comment.yochat.id %>")[0].value = "Comment (" + <%= @comment.yochat.comments.count.to_s %> + ")";

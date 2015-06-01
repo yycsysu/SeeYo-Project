@@ -18,7 +18,6 @@ class YochatsController < ApplicationController
 
   def show
     @comments = @yochat.comments.reverse
-    puts @comments.count
     @comment = @yochat.comments.build
 
     respond_to do |format|
@@ -27,9 +26,12 @@ class YochatsController < ApplicationController
   end
 
   def destroy
+    @yochat_id = @yochat.id
     @yochat.destroy
-    redirect_to yochats_path
-    flash[:notice] = "Yochat was successfully deleted!"
+    respond_to do |format|
+      format.js
+      format.html { redirect_to root_path, notice: 'Yochat was successfully deleted!' }
+    end
   end
 
   private

@@ -23,7 +23,8 @@
       </tr>
       <tr>
         <td class="text-right text-muted td-xs" width="20">
-          <%= content_tag('i', nil, class: "fa fa-male fa-fw") %>
+          <% cls = "fa fa-" + @user.information.gender + " fa-fw" %>
+          <%= content_tag('i', nil, class: cls) %>
         </td>
         <td class="td-xs" id="gender_td"><%= @user.information.gender %></td>
       </tr>

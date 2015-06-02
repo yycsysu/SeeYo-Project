@@ -1,4 +1,5 @@
 class Comment < ActiveRecord::Base
-	belongs_to :user
-	belongs_to :yochat
+  validates_presence_of :content
+  belongs_to :user
+  belongs_to :yochat
 end

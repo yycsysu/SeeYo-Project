@@ -5,7 +5,6 @@ class YochatsController < ApplicationController
 
   def create
     @yochat = @user.yochats.build(yochat_params)
-    @yochat.like = 0;
     respond_to do |format|
       if @yochat.save
         format.js

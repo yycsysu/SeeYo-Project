@@ -7,7 +7,7 @@
       <div class="col-md-10">
         <%= link_to yochat.user.information.username, user_path(yochat.user) %>
         <p><%= yochat.content %></p>
-        <p class="text-muted"><%= yochat.updated_at %></p>
+        <p class="text-muted"><%= yochat.updated_at %> share with: <%= yochat.share_with %></p>
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
           <div class="btn-group" role="group">
             <%= button_to 'Comment (' + yochat.comments.count.to_s + ')' , yochat_path(yochat), :method => :get, remote: true, :class => "btn btn-default btn-xs", :id => "comment_button" + yochat.id.to_s %>
@@ -17,9 +17,6 @@
             <%= button_to 'Delete', yochat_path(yochat), :method => :delete, remote: true, :class => "btn btn-default btn-xs" %>
           </div>
           <% end %>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-default btn-xs">Like <span class="badge"><%= yochat.like %></span></button>
-          </div>
         </div>
         <hr />
         <div class="row-fluid">

@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  get '/plaza' => 'staticpages#plaza', :as => "plaza" 
-  get '/profile/:id' => 'staticpages#profile', :as => "profile" 
+  get '/plaza/:id' => 'staticpages#plaza', :as => "plaza" 
 
   root :to => "staticpages#welcome"
 

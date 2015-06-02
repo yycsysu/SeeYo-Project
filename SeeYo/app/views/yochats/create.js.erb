@@ -1,4 +1,7 @@
 $("#publish_text_area")[0].value = "";
 $("#yochats_div").prepend("<%= escape_javascript(render @yochat) %>");
+$("#yochats_div").prepend("<%= escape_javascript(render :partial => 'common/modal_message') %>");
 var cnt = parseInt($("#yochat_count").html()) + 1;
 $("#yochat_count").html(cnt.toString());
+$('#modal_div').modal('show');
+setTimeout( "$('#modal_div').modal('hide')", 1000);

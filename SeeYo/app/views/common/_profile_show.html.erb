@@ -40,7 +40,7 @@
 <% if current_user.id == @user.id %>
   <div class="row-fluid">
     <div class="col-md-2 col-md-offset-5">
-      <%= button_to 'Edit', edit_user_path(@user), remote: true,:method => :get, :class => "btn btn-default" %>
+      <%= button_to 'Edit', edit_user_path(@user), remote: true, :method => :get, :class => "btn btn-default" %>
     </div>
   </div>
 <% end %>

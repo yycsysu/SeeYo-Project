@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602154416) do
+ActiveRecord::Schema.define(version: 20150603185013) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -80,6 +80,10 @@ ActiveRecord::Schema.define(version: 20150602154416) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_admin",               default: false
+    t.integer  "messages_unread",        default: 0
+    t.integer  "circle_unread",          default: 0
+    t.integer  "zone_unread",            default: 0
+    t.integer  "yochat_unread",          default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

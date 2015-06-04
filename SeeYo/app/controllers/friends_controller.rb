@@ -3,6 +3,21 @@ class FriendsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_user
 
+  def index
+    @page_title = 'YoFriends'
+    if @user == current_user
+      @friends = Array.new
+      focus = Friend.where(['userf_id=?', current_user.id])
+      focus.each do |fo|
+        if Friend.exists?(:userf_id => fo.usert_id, :usert_id => current_user.id)
+          @friends.push(fo)
+        end
+      end
+    else
+      redirect_to user_url(@user)
+    end
+  end
+
   def destroy
     if current_user.id.to_s != params[:user_id] and current_user.id.to_s != params[:id]
       redirect_to :back
@@ -19,11 +34,12 @@ class FriendsController < ApplicationController
       focus_u.each do |f|
         f.destroy
       end
-      flash[:notice] = 'Friend was successful cancled!'
+      #flash[:notice] = 'Friend was successful cancled!'
       redirect_to user_url(@user)
     else
       Friend.create(:userf_id => current_user.id, :usert_id => @user.id)
-      flash[:notice] = 'Friend was successful added!'
+      Message.create(:user => @user, :classes => 'fans', :sender_id => current_user.id)
+      #flash[:notice] = 'Friend was successful added!'
       redirect_to user_url(@user)
     end
   end

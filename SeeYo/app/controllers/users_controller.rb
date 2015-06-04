@@ -28,16 +28,21 @@ class UsersController < ApplicationController
       @block_title = "Following"
       @render_name = "follow_show"
       @users = User.find(@focus)
+    elsif params[:operation] == "3"
+      @block_title = "Messages"
+      @messages = current_user.messages.order('created_at DESC').page(params[:page]).per(10)
+      @render_name = "messages_show"
+      current_user.messages_unread = 0
     elsif @user.id == current_user.id
       @block_title = "My YoChats"
       @render_name = "yochat_show"
     else
-      @block_title = @user.information.username + "'s YoChats"
+      @block_title = @user.information.username + "\'s YoChats"
       @render_name = "yochat_show"
     end
     if @user
       @yochats = @user.yochats.reverse
-      @page_title = @user.information.username + "'s Home"
+      @page_title = @user.information.username + "\'s Home"
     end
   end
 

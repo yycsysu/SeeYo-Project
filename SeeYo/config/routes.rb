@@ -5,22 +5,17 @@ Rails.application.routes.draw do
 
   root :to => "staticpages#welcome"
 
-  
   resources :users, :except => [:new, :create, :destroy] do
-    resources :friends, :except => [:show, :new, :edit, :update] do
-      collection do
-        get :show_focus
-        get :show_fans
-      end
-    end
+    resources :friends, :except => [:show, :new, :edit, :update]
   end
   resources :yochats do
     resources :comments, :except => [:index, :show]
   end
   namespace :admin do
-    resources :users
-    resources :yochats
-    resources :comments
+    resources :users, :except => [:new, :create]
+    resources :yochats, :except => [:new, :create, :destroy]
+    resources :comments, :except => [:show, :new, :create, :destroy]
+    resources :messages, :only => [:index, :show, :destroy]
   end
   match ':controller(/:action(/:id(.:format)))', :via => :all
   

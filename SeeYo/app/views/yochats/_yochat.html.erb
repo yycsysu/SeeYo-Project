@@ -6,8 +6,8 @@
       </div>
       <div class="col-md-10">
         <%= link_to yochat.user.information.username, user_path(yochat.user) %>
-        <p><%= yochat.content %></p>
-        <p class="text-muted"><%= yochat.updated_at %> share with: <%= yochat.share_with %></p>
+        <span style="float: right"><%= yochat.share_with.upcase %><span class="text-muted"> <%= yochat.updated_at %></span></span>
+        <p style='padding-left: 15px;padding-top: 5px'><%= yochat.content %></p>
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
           <div class="btn-group" role="group">
             <%= button_to 'Comment (' + yochat.comments.count.to_s + ')' , yochat_path(yochat), :method => :get, remote: true, :class => "btn btn-default btn-xs", :id => "comment_button" + yochat.id.to_s %>

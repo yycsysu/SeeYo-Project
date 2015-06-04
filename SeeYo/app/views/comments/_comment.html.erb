@@ -6,11 +6,18 @@
       </div>
       <div class="col-md-10">
         <%= link_to comment.user.information.username, '#' %>
+        <span class="text-muted" style="float: right"><%= comment.updated_at %></span>
         <p><%= comment.content %></p>
-        <p class="text-muted"><%= comment.updated_at %></p>
-        <% if comment.user.id == @user.id %>
-          <%= button_to 'Delete', yochat_comment_path(comment.yochat, comment), :method => :delete, remote: true, :class => "btn btn-default btn-xs btn-block" %>
-        <% end %>
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+          <div class="btn-group" role="group">
+            <%= button_to 'reply', edit_yochat_comment_path(@yochat, comment.user), remote: true, :method => :get, :class => "btn btn-default btn-xs" %>
+          </div>
+          <% if comment.user.id == @user.id %>
+          <div class="btn-group" role="group">
+          <%= button_to 'Delete', yochat_comment_path(comment.yochat, comment), :method => :delete, remote: true, :class => "btn btn-default btn-xs" %>
+          </div>
+          <% end %>
+        </div>
         <hr />
       </div>
     </div>

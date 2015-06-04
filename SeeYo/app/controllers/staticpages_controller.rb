@@ -20,6 +20,7 @@ class StaticpagesController < ApplicationController
 
   def plaza
     @page_title = "Plaza - where you can make friends with others"
+    current_user.yochat_unread = 0
     if params[:operation] == "0"
       @yochats = Yochat.all.reverse
       @active_li = "all_li"

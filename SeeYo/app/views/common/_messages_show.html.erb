@@ -13,14 +13,14 @@
       <strong>@your Comment: -> Yochat not Found</strong>
       <% end %>
       <p>content:</p><p> -> <%= message.content %> </p>
-      <p>time: <%= message.created_at %></p>
+      <p>time: <%= l message.created_at, :format => :short %></p>
     </div>
     <% elsif message.classes == 'fans' %>
     <div class="alert alert-success" role="alert">
       <% user = User.find(message.sender_id) %>
       <p>sender: <%= link_to user.information.username, user_path(user) %></p>
       <strong>Add you as YoFriends</strong>
-      <p>time: <%= message.created_at %></p>
+      <p>time: <%= l message.created_at, :format => :short %></p>
     </div>
     <% elsif message.classes == 'yochat' %>
     <div class="alert alert-info" role="alert">
@@ -33,7 +33,7 @@
       <strong>@your Yochat: -> Yochat not Found</strong>
       <% end %>
       <p>content:</p><p> -> <%= message.content %> </p>
-      <p>time: <%= message.created_at %></p>
+      <p>time: <%= l message.created_at, :format => :short %></p>
     </div>
     <% elsif message.classes == 'system' %>
     <div class="alert alert-danger" role="alert">
@@ -42,7 +42,7 @@
       <p>@your: <%= link_to 'Link', yochat_path(Yochat.find(message.msg_id)) %></p>
       <% end %>
       <p>content:</p><p> -> <%= message.content %> </p>
-      <p>time: <%= message.created_at %></p>
+      <p>time: <%= l message.created_at, :format => :short %></p>
     </div>
     <% end %>
     <% end %>

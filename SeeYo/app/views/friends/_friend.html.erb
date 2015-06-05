@@ -1,7 +1,7 @@
 <% user = User.find(friend.usert_id) %>
 <div class="row-fluid" id="user_div<%= user.id %>">
   <div class="col-md-2">
-    <%= image_tag("head.jpg") %>
+    <%= image_tag(user.information.avatar, class:"img-rounded center-block", :width => IMG_SIZE_NORMAL, :height => IMG_SIZE_NORMAL) %>
   </div>
   <div class="col-md-6">
     <%= link_to user.information.username, user_path(user) %>

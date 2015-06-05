@@ -38,7 +38,7 @@
   </tr>
   <tr id="created_date">
     <td class="text-right text-muted" width="100">Join on</td>
-    <td><%= @user.created_at.year %>-<%= @user.created_at.month %>-<%= @user.created_at.day %></td>
+    <td><%= @user.created_at.strftime("%d %b. %Y") %></td>
   </tr>
 </table>
 <% if current_user.id == @user.id %>

@@ -48,5 +48,8 @@ group :development, :test do
   gem 'less-rails'
   gem 'devise'
 
+  gem 'carrierwave' #photo uploader
+  gem 'mini_magick' #不使用rmagick，占内存
+
 end
 

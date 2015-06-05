@@ -1,6 +1,7 @@
 <div class="row-fluid">
   <div class="col-md-12" >
-    <%= image_tag("a.jpg", class:"img-rounded center-block") %>
+    <%= link_to image_tag(@user.information.avatar_url(:large), class:"img-rounded center-block", title: "Change avatar", :width => IMG_SIZE_LARGE, :height => IMG_SIZE_LARGE), user_path(@user, :operation => "4") %>
+
     <h2 class="text-center" id="username_h"><%= @user.information.username %></h2>
     <% if Friend.exists?(:userf_id => current_user.id ,:usert_id => @user.id) %>
       <%= button_to 'Unfollow', user_friends_path(@user), :method => 'post', :class => "btn btn-default btn-sm btn-block" %>
@@ -32,7 +33,7 @@
         <td class="text-right text-muted td-xs" width="20">
           <%= content_tag('i', nil, class: "fa fa-clock-o fa-fw") %>
         </td>
-        <td class="td-xs">Joined on <%= @user.created_at.year %>-<%= @user.created_at.month %>-<%= @user.created_at.day %></td>
+        <td class="td-xs">Joined on <%= @user.created_at.strftime("%d %b. %Y") %></td>
       </tr>
       <tr>
         <td class="text-right text-muted td-xs" width="20"></td>

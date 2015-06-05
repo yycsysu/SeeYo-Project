@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  require 'carrierwave/orm/activerecord'
+
   before_filter :authenticate_user!
   before_action :set_current_user, :only => [:index, :update, :edit]
   before_action :set_user, :except => [:index, :update, :edit]
@@ -32,7 +34,11 @@ class UsersController < ApplicationController
       @block_title = "Messages"
       @messages = current_user.messages.order('created_at DESC').page(params[:page]).per(10)
       @render_name = "messages_show"
-      current_user.messages_unread = 0
+      current_user.update(:messages_unread => 0)
+    elsif params[:operation] == "4" and @user.id == current_user.id
+      @info = current_user.information
+      @block_title = "Avatar"
+      @render_name = "avatar_uploader"
     elsif @user.id == current_user.id
       @block_title = "My YoChats"
       @render_name = "yochat_show"
@@ -56,11 +62,11 @@ class UsersController < ApplicationController
   def update
     @info = @user.information
     respond_to do |format|
-      if @info.update(info_params)
+      if @info.update!(info_params)
         format.js
         format.html { redirect_to root_path, notice: 'Information was successfully updated!' }
       else
-        format.html { render "edit", alert: 'Information updated failed!' }
+        format.html { render "update", alert: 'Information updated failed!' }
       end
     end
   end
@@ -97,7 +103,7 @@ class UsersController < ApplicationController
   end
 
   def info_params
-    params.require(:information).permit(:username, :gender, :location, :about, :birthday, :blog, :interest_ids => [])
+    params.require(:information).permit(:username, :avatar, :avatar_cache, :gender, :location, :about, :birthday, :blog, :interest_ids => [])
   end
 
   def yochat_params

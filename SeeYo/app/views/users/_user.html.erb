@@ -1,6 +1,6 @@
 <div class="row-fluid" id="user_div<%= user.id %>">
   <div class="col-md-2">
-    <%= image_tag("head.jpg") %>
+    <%= link_to image_tag(user.information.avatar_url(:normal)), user_path(user) %>
   </div>
   <div class="col-md-6">
     <%= link_to user.information.username, user_path(user) %>

@@ -34,13 +34,13 @@
   </tr>
   <tr id="created_date">
     <td class="text-right text-muted" width="100">Join on</td>
-    <td><%= @user.created_at.year %>-<%= @user.created_at.month %>-<%= @user.created_at.day %></td>
+    <td><%= @user.created_at.strftime("%d %b. %Y") %></td>
   </tr>
 </table>
 <% if current_user.id == @user.id %>
   <div class="row-fluid">
     <div class="col-md-2 col-md-offset-5">
-      <%= button_to 'Edit', edit_user_path(@user), remote: true, :method => :get, :class => "btn btn-default" %>
+      <%= button_to 'Edit', edit_user_path(@user, :operation => 0), remote: true, :method => :get, :class => "btn btn-default" %>
     </div>
   </div>
 <% end %>

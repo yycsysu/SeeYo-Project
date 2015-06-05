@@ -8,13 +8,17 @@ class CommentsController < ApplicationController
     @comment.user = @user
     respond_to do |format|
       if @comment.save
-        @ater_user = User.find(@comment.ater_id)
-        if @ater_user != @user
-          Message.create(:user_id => @comment.ater_id, :classes => 'comment', :msg_id => @yochat.id, :sender_id => @user.id)
-          @ater_user.increment!(:messages_unread)
+        if @comment.ater_id
+          @ater_user = User.find(@comment.ater_id)
+          if @ater_user != @user
+            Message.create(:user_id => @comment.ater_id, :classes => 'comment', :msg_id => @yochat.id, :sender_id => @user.id)
+            @ater_user.increment!(:messages_unread)
+          end
         end
-        Message.create(:user => @yochat.user, :classes => "yochat", :msg_id => @yochat.id, :sender_id => @user.id)
-        @yochat.user.increment!(:messages_unread)
+        if @yochat.user != @user
+          Message.create(:user => @yochat.user, :classes => "yochat", :msg_id => @yochat.id, :sender_id => @user.id)
+          @yochat.user.increment!(:messages_unread)
+        end
         #Message.create(:user => @yochat.user, :classes => "yochat", :msg_id => @comment.id, :sender_id => @user.id)
         format.js
         format.html { redirect_to root_path, notice: 'Comment was successfully created!' }

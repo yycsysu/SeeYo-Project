@@ -20,9 +20,11 @@ class CommentsController < ApplicationController
           @yochat.user.increment!(:messages_unread)
         end
         #Message.create(:user => @yochat.user, :classes => "yochat", :msg_id => @comment.id, :sender_id => @user.id)
+        @float_message = "Successfully commented";
         format.js
         format.html { redirect_to root_path, notice: 'Comment was successfully created!' }
       else
+        @float_message = "Faild to comment";
         format.html { render "create", alert: 'Comment created faild!' }
       end
     end
@@ -48,9 +50,6 @@ class CommentsController < ApplicationController
 
   private
   def set_user_yochat
-    if current_user.is_admin
-      redirect_to admin_comments_url
-    end
     @user = current_user
     @yochat = Yochat.find(params[:yochat_id])
   end

@@ -34,4 +34,5 @@ function avatar_preview() {
       }
       reader.readAsDataURL(files[0]);
  //   }
+    $("#upload_button").fadeIn();
   }

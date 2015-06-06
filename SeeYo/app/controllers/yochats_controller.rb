@@ -7,9 +7,11 @@ class YochatsController < ApplicationController
     @yochat = @user.yochats.build(yochat_params)
     respond_to do |format|
       if @yochat.save
+        @float_message = 'Successfully published!'
         format.js
         format.html { redirect_to root_path, notice: 'Yochat was successfully created!' }
       else
+        @float_message = 'Failed to publish!'
         format.html { render "create", alert: 'Yochat created faild!' }
       end
     end

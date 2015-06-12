@@ -6,13 +6,13 @@ class StaticpagesController < ApplicationController
     if current_user
       if !current_user.information
         info = current_user.create_information
-        info.username = "NewUser" + current_user.id.to_S
-        info.gender = ""
-        info.location = ""
-        info.about = ""
+        info.username = "NewUser" + current_user.id.to_s
+        info.gender = " "
+        info.location = " "
+        info.about = " "
         info.birthday = "1990-1-1"
-        info.blog = ""
-        info.save
+        info.blog = " "
+        info.save!
       end
       redirect_to users_path
     end

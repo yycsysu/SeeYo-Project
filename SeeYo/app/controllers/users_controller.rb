@@ -10,7 +10,15 @@ class UsersController < ApplicationController
     if @user
       @page_title = "My Homepage"
       @block_title = "YoChats"
-      @yochats = @user.yochats.reverse
+      @usershows = User.find(@focus)
+      @usershows.push(@user)
+      @yochats = Array.new
+      @usershows.each do |us|
+        us.yochats.each do |y|
+        @yochats.push(y)
+        end
+      end
+      @yochats.sort! {|a, b| b.created_at.strftime("%Y%m%d%H%M%S").to_i <=> a.created_at.strftime("%Y%m%d%H%M%S").to_i}
       @yochat = @user.yochats.build
     else
       redirect_to root_path
@@ -62,7 +70,7 @@ class UsersController < ApplicationController
   def update
     @info = @user.information
     respond_to do |format|
-      if Information.exists?(:username => info_params[:username]) and info_params[:username] != @info.username
+      if Information.exists?(:username => info_params[:username]) and info_params[:username] and info_params[:username] != @info.username
         @return = "0"
         @float_message = "Username exists"
         format.js

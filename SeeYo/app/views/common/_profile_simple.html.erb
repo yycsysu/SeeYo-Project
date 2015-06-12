@@ -16,12 +16,15 @@
         </td>
         <td class="td-xs" id="email_td"><%= @user.email %></td>
       </tr>
+      <% if @user.information.location != " " %>
       <tr>
         <td class="text-right text-muted td-xs" width="20">
           <%= content_tag('i', nil, class: "fa fa-location-arrow fa-fw") %>
         </td>
         <td class="td-xs" id="location_td"><%= @user.information.location %></td>
       </tr>
+      <% end %>
+      <% if @user.information.gender != " " %>
       <tr>
         <td class="text-right text-muted td-xs" width="20">
           <% cls = "fa fa-" + @user.information.gender + " fa-fw" %>
@@ -29,6 +32,7 @@
         </td>
         <td class="td-xs" id="gender_td"><%= @user.information.gender %></td>
       </tr>
+      <% end %>
       <tr>
         <td class="text-right text-muted td-xs" width="20">
           <%= content_tag('i', nil, class: "fa fa-clock-o fa-fw") %>
@@ -49,7 +53,7 @@
           <%= link_to content_tag('h1', @focus.count, class: "text-center") + content_tag('h6', "Following", class: "text-center text-muted"), user_path(@user, :operation => "2"), :class => "vcard-stat" %>
         </td>
         <td>
-          <%= link_to content_tag('h1', @yochats.count, class: "text-center") + content_tag('h6', "YoChat", class: "text-center text-muted"), user_path(@user), :class => "vcard-stat" %>
+          <%= link_to content_tag('h1', @user.yochats.count, class: "text-center") + content_tag('h6', "YoChat", class: "text-center text-muted"), user_path(@user), :class => "vcard-stat" %>
         </td>
       </tr>
     </table>

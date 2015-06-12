@@ -62,7 +62,13 @@ class UsersController < ApplicationController
   def update
     @info = @user.information
     respond_to do |format|
-      if @info.update!(info_params)
+      if Information.exists?(:username => info_params[:username]) and info_params[:username] != @info.username
+        @return = "0"
+        @float_message = "Username exists"
+        format.js
+      elsif @info.update!(info_params)
+        @return = "1"
+        @float_message = "Successfully updated"
         format.js
         format.html { redirect_to root_path, notice: 'Information was successfully updated!' }
       else

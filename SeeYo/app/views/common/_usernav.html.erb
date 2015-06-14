@@ -17,7 +17,7 @@
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
       <li role="presentation"><%= link_to "Edit profile", user_path(current_user, :operation => "0"), :role => "menuitem", :tabindex => "-1"%></li>
       <li role="presentation"><%= link_to "Edit avatar", user_path(current_user, :operation => "4"), :role => "menuitem", :tabindex => "-1"%></li>
-      <li role="presentation"><%= link_to "Edit password", user_path(current_user, :operation => "4"), :role => "menuitem", :tabindex => "-1"%></li>
+      <li role="presentation"><%= link_to "Edit password", edit_user_registration_path, :role => "menuitem", :tabindex => "-1"%></li>
       <li role="presentation" class="divider"></li>
       <li role="presentation"><%= link_to "Log out", destroy_user_session_path, :method => :delete, :role => "menuitem", :tabindex => "-1"%></li>
     </ul>

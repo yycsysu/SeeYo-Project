@@ -10,14 +10,16 @@ class UsersController < ApplicationController
     if @user
       @page_title = "My Homepage"
       @block_title = "YoChats"
-      @usershows = User.find(@focus)
-      @usershows.push(@user)
+      usershows = User.find(@focus)
       @yochats = Array.new
-      @usershows.each do |us|
+      usershows.each do |us|
         us.yochats.each do |y|
         @yochats.push(y)
         end
       end
+        @user.yochats.each do |y|
+        @yochats.push(y)
+        end
       @yochats.sort! {|a, b| b.created_at.strftime("%Y%m%d%H%M%S").to_i <=> a.created_at.strftime("%Y%m%d%H%M%S").to_i}
       @yochat = @user.yochats.build
     else

@@ -11,8 +11,7 @@
         <div style='position:relative; float:left; left:-10px; top:-10px'><%= yochat.id %></div>
         <div style='float: right'><%= yochat.created_at %></div>
         <strong><%= yochat.user.information.username %></strong>
-        <div style='font-family:Arial; padding-left: 15px'><%= simple_format(yochat.content) %></div>
-        <%= link_to 'show', admin_yochat_path(yochat) %>&nbsp;&nbsp;<%= link_to 'edit', edit_admin_yochat_path(yochat) %>
+        <div style='font-family:Arial; padding-left: 15px'><%= simple_format(yochat.content) %></div><%= link_to 'edit', edit_admin_yochat_path(yochat) %>
     </div>
 <% end %>
 <hr/>

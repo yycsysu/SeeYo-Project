@@ -6,7 +6,7 @@ class StaticpagesController < ApplicationController
     if current_user
       if !current_user.information
         info = current_user.create_information
-        info.username = "NewUser" + current_user.id.to_s
+        info.username = "id" + Time.now.strftime("%Y%m%d%H%M%S")
         info.gender = " "
         info.location = " "
         info.about = " "
